@@ -7,6 +7,8 @@ Generates device tree overlays for easy gpio mux control.
 
 ##### Generate and install the overlay files
 
+Or, if you're lazy/don't have python, grab the files from the "generated" directory.
+
 Generate the dts files, the compile script, and the install script with
 
     python generateGPIOOverlays.py
