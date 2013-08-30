@@ -5,7 +5,7 @@ Generates device tree overlays for easy gpio mux control.
 
 #### Usage
 
-##### Genarate and install the overlay files
+##### Generate and install the overlay files
 
 Generate the dts files, the compile script, and the install script with
 
