@@ -5,7 +5,7 @@ Generates device tree overlays for easy gpio mux control.
 
 #### Usage
 
-##### Generate and install the overlay files
+##### Generate and install the overlay files (optional)
 
 Or, if you're lazy/don't have python, grab the files from the "generated" directory.
 
