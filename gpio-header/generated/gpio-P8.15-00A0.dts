@@ -1,0 +1,113 @@
+/*
+* Easy gpio mux control of "P8.15" ("gpio1_15")
+*/
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "gpio-P8.15";
+	/* version = "00A0"; */
+
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P8.15",
+
+		/* the hardware IP uses */
+		"gpio1_15";
+	
+	
+	/* rxDisable_pullNone state */
+	fragment@0 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			gpio_P8_15_rxDisable_pullNone: pinmux_gpio_P8.15_rxDisable_pullNone {
+				pinctrl-single,pins = <
+					0x3c	0xf
+				>;
+			};
+		};
+	};
+
+	/* rxEnable_pullNone state */
+	fragment@1 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			gpio_P8_15_rxEnable_pullNone: pinmux_gpio_P8.15_rxEnable_pullNone {
+				pinctrl-single,pins = <
+					0x3c	0x2f
+				>;
+			};
+		};
+	};
+
+	/* rxDisable_pullUp state */
+	fragment@2 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			gpio_P8_15_rxDisable_pullUp: pinmux_gpio_P8.15_rxDisable_pullUp {
+				pinctrl-single,pins = <
+					0x3c	0x17
+				>;
+			};
+		};
+	};
+
+	/* rxEnable_pullUp state */
+	fragment@3 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			gpio_P8_15_rxEnable_pullUp: pinmux_gpio_P8.15_rxEnable_pullUp {
+				pinctrl-single,pins = <
+					0x3c	0x37
+				>;
+			};
+		};
+	};
+
+	/* rxDisable_pullDown state */
+	fragment@4 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			gpio_P8_15_rxDisable_pullDown: pinmux_gpio_P8.15_rxDisable_pullDown {
+				pinctrl-single,pins = <
+					0x3c	0x7
+				>;
+			};
+		};
+	};
+
+	/* rxEnable_pullDown state */
+	fragment@5 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			gpio_P8_15_rxEnable_pullDown: pinmux_gpio_P8.15_rxEnable_pullDown {
+				pinctrl-single,pins = <
+					0x3c	0x27
+				>;
+			};
+		};
+	};
+
+	fragment@6 {
+		target = <&ocp>;
+		__overlay__ {
+
+			gpio_P8.15_helper {
+				compatible = "bone-pinmux-helper";
+				status = "okay";
+				pinctrl-names = "rxDisable_pullNone", "rxEnable_pullNone", "rxDisable_pullUp", "rxEnable_pullUp", "rxDisable_pullDown", "rxEnable_pullDown";
+				pinctrl-0 = <&gpio_P8_15_rxDisable_pullNone>;
+				pinctrl-1 = <&gpio_P8_15_rxEnable_pullNone>;
+				pinctrl-2 = <&gpio_P8_15_rxDisable_pullUp>;
+				pinctrl-3 = <&gpio_P8_15_rxEnable_pullUp>;
+				pinctrl-4 = <&gpio_P8_15_rxDisable_pullDown>;
+				pinctrl-5 = <&gpio_P8_15_rxEnable_pullDown>;
+			};
+		};
+	};
+
+};
