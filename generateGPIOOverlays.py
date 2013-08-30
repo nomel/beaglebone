@@ -195,8 +195,6 @@ def generateInstallScript(dtsFilenames):
 	print "Done."
 	
 if __name__ == "__main__":
-	global gpioPins
-	
 	# pin mux mode bits
 	rxEnable = 1 << 5
 	rxDisable = 0 << 5
@@ -229,7 +227,7 @@ if __name__ == "__main__":
 		names, values = zip(*combo)
 		stateName = "_".join(names) 
 		muxMode = reduce(operator.or_, values, 0)	# or all of the values together
-		states.append(stateName, muxMode)
+		states.append((stateName, muxMode))
 		print "  %s:" % stateName, hex(muxMode)
 
 	filenames = generateDTSFiles(gpioPins, states)
