@@ -23,7 +23,7 @@ Copy the generated .dtbo files to /lib/firmware (or copy manually):
     
 ##### Use the overlay
 
-Setup P9.11 to be gpio
+Setup P9.11 mux for gpio
 
     echo gpio-P9.11 > /sys/devices/bone_capemgr.*/slots
     
