@@ -26,7 +26,7 @@
 		__overlay__ {
 			gpio_P8_39_rxDisable_pullNone: pinmux_gpio_P8.39_rxDisable_pullNone {
 				pinctrl-single,pins = <
-					0xb8	0xf
+					0xb8	0x2b
 				>;
 			};
 		};
@@ -38,7 +38,7 @@
 		__overlay__ {
 			gpio_P8_39_rxEnable_pullNone: pinmux_gpio_P8.39_rxEnable_pullNone {
 				pinctrl-single,pins = <
-					0xb8	0x2f
+					0xb8	0x2b
 				>;
 			};
 		};
@@ -50,7 +50,7 @@
 		__overlay__ {
 			gpio_P8_39_rxDisable_pullUp: pinmux_gpio_P8.39_rxDisable_pullUp {
 				pinctrl-single,pins = <
-					0xb8	0x17
+					0xb8	0x3b
 				>;
 			};
 		};
@@ -62,7 +62,7 @@
 		__overlay__ {
 			gpio_P8_39_rxEnable_pullUp: pinmux_gpio_P8.39_rxEnable_pullUp {
 				pinctrl-single,pins = <
-					0xb8	0x37
+					0xb8	0x3b
 				>;
 			};
 		};
@@ -74,7 +74,7 @@
 		__overlay__ {
 			gpio_P8_39_rxDisable_pullDown: pinmux_gpio_P8.39_rxDisable_pullDown {
 				pinctrl-single,pins = <
-					0xb8	0x7
+					0xb8	0x2b
 				>;
 			};
 		};
@@ -86,7 +86,7 @@
 		__overlay__ {
 			gpio_P8_39_rxEnable_pullDown: pinmux_gpio_P8.39_rxEnable_pullDown {
 				pinctrl-single,pins = <
-					0xb8	0x27
+					0xb8	0x2b
 				>;
 			};
 		};
