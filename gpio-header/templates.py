@@ -45,7 +45,7 @@ dtsContents = {
 
 ### fragment template
 fragment = {
-	"parameters": ("index", "header name", "clean header name", "state name", "gpio offset", "mux mode"),
+	"parameters": ("index", "header name", "clean header name", "state name", "offset and mux list"),
 	"text": """
 	/* <<state name>> state */
 	fragment@<<index>> {
@@ -53,7 +53,7 @@ fragment = {
 		__overlay__ {
 			gpio_<<clean header name>>_<<state name>>: pinmux_gpio_<<header name>>_<<state name>> {
 				pinctrl-single,pins = <
-					<<gpio offset>>	<<mux mode>>
+					<<offset and mux list>>
 				>;
 			};
 		};
