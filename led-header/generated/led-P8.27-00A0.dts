@@ -1,0 +1,54 @@
+/*
+* Easy gpio mux control of "P8.27" ("gpio2_22")
+*/
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "led-P8.27";
+	/* version = "00A0"; */
+
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P8.27",
+
+		/* the hardware IP uses */
+		"gpio2_22";
+	
+	
+	/* rxDisable_pullNone state */
+	fragment@0 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			gpio_P8_27_rxDisable_pullNone: pinmux_gpio_P8.27_rxDisable_pullNone {
+				pinctrl-single,pins = <
+					0xe0 0xf
+				>;
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			led_P8.27_helper {
+				compatible = "gpio-leds";
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpio_P8_27_rxDisable_pullNone>;
+				
+				leds_P8.27 {
+					label = "leds:P8.27";
+					gpios = <&gpio3 22 0>;
+					linux,default-trigger = "none";
+					default-state = "off";
+				};
+			};
+			
+		};
+	};
+
+};

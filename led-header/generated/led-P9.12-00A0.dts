@@ -1,0 +1,54 @@
+/*
+* Easy gpio mux control of "P9.12" ("gpio1_28")
+*/
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "led-P9.12";
+	/* version = "00A0"; */
+
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P9.12",
+
+		/* the hardware IP uses */
+		"gpio1_28";
+	
+	
+	/* rxDisable_pullNone state */
+	fragment@0 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			gpio_P9_12_rxDisable_pullNone: pinmux_gpio_P9.12_rxDisable_pullNone {
+				pinctrl-single,pins = <
+					0x78 0xf
+				>;
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			led_P9.12_helper {
+				compatible = "gpio-leds";
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpio_P9_12_rxDisable_pullNone>;
+				
+				leds_P9.12 {
+					label = "leds:P9.12";
+					gpios = <&gpio2 28 0>;
+					linux,default-trigger = "none";
+					default-state = "off";
+				};
+			};
+			
+		};
+	};
+
+};

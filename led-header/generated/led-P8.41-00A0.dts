@@ -1,0 +1,54 @@
+/*
+* Easy gpio mux control of "P8.41" ("gpio2_10")
+*/
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "led-P8.41";
+	/* version = "00A0"; */
+
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P8.41",
+
+		/* the hardware IP uses */
+		"gpio2_10";
+	
+	
+	/* rxDisable_pullNone state */
+	fragment@0 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			gpio_P8_41_rxDisable_pullNone: pinmux_gpio_P8.41_rxDisable_pullNone {
+				pinctrl-single,pins = <
+					0xb0 0xf
+				>;
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			led_P8.41_helper {
+				compatible = "gpio-leds";
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpio_P8_41_rxDisable_pullNone>;
+				
+				leds_P8.41 {
+					label = "leds:P8.41";
+					gpios = <&gpio3 10 0>;
+					linux,default-trigger = "none";
+					default-state = "off";
+				};
+			};
+			
+		};
+	};
+
+};

@@ -142,9 +142,10 @@ def generateDTSFilesDualPin(dualGpioPins, states):
 		
 		p1hardwareName, p1offset, p1kernelPin, p1gpioMuxMode = pin1
 		p2hardwareName, p2offset, p2kernelPin, p2gpioMuxMode = pin2
-		
+		gpioBank = int(p1hardwareName.split("_")[0][4:])
+		gpioPin = int(p1hardwareName.split("_")[1])
 
-		partNumber = "gpio%d-%s" % (p1kernelPin, headerName)
+		partNumber = "led-%s" % headerName
 		version = "00A0"
 		filename = "%s-%s" % (partNumber, version)
 		
@@ -181,15 +182,20 @@ def generateDTSFilesDualPin(dualGpioPins, states):
 			pinctrlList.append(templates.populate(templates.pinctrl, values))
 			
 			index += 1
+			break	# only do the first state.
 		
 		# last fragment entry for pinmux helper
 		helperValues =	{
 			"index": index,
 			"state names list": ", ".join(['"%s"' % stateName for stateName, stateMuxBits in states]),
 			"pinctrl list": "\n\t\t\t\t".join(pinctrlList),
+			"header name": headerName,
+			"gpio bank + 1": gpioBank + 1,
+			"gpio pin": gpioPin,
+			"output pinctrl entry": pinctrlList[0],
 		}
 		values.update(helperValues)
-		fragmentList.append(templates.populate(templates.pinmuxHelper, values))
+		fragmentList.append(templates.populate(templates.ledHelper, values))
 
 		## dts template
 		dtsValues = {
@@ -206,7 +212,7 @@ def generateDTSFilesDualPin(dualGpioPins, states):
 		finally:
 			f.close()
 			
-		dtsFilenames.append(filename)		
+		dtsFilenames.append(filename)	
 	return dtsFilenames
 		
 def generateDTSFiles(gpioPins, states):
@@ -215,8 +221,11 @@ def generateDTSFiles(gpioPins, states):
 	dtsFilenames = []
 	for pin in gpioPins:
 		headerName, hardwareName, offset, kernelPin, gpioMuxMode = pin
-
-		partNumber = "gpio%d-%s" % (kernelPin, headerName)
+		
+		gpioBank = int(hardwareName.split("_")[0][4:])
+		gpioPin = int(hardwareName.split("_")[1])
+		
+		partNumber = "led-%s" % headerName
 		version = "00A0"
 		filename = "%s-%s" % (partNumber, version)
 		
@@ -249,15 +258,20 @@ def generateDTSFiles(gpioPins, states):
 			pinctrlList.append(templates.populate(templates.pinctrl, values))
 			
 			index += 1
+			break
 		
 		# last fragment entry for pinmux helper
 		helperValues =	{
 			"index": index,
 			"state names list": ", ".join(['"%s"' % stateName for stateName, stateMuxBits in states]),
 			"pinctrl list": "\n\t\t\t\t".join(pinctrlList),
+			"header name": headerName,
+			"gpio bank + 1": gpioBank + 1,
+			"gpio pin": gpioPin,
+			"output pinctrl entry": pinctrlList[0],
 		}
 		values.update(helperValues)
-		fragmentList.append(templates.populate(templates.pinmuxHelper, values))
+		fragmentList.append(templates.populate(templates.ledHelper, values))
 
 		## dts template
 		dtsValues = {

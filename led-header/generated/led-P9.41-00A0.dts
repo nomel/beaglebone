@@ -1,0 +1,54 @@
+/*
+* Easy gpio mux control of "P9.41" ("gpio0_20", "gpio3_20")
+*/
+/dts-v1/;
+/plugin/;
+
+/ {
+	compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+	/* identification */
+	part-number = "led-P9.41";
+	/* version = "00A0"; */
+
+	/* state the resources this cape uses */
+	exclusive-use =
+		/* the pin header uses */
+		"P9.41",
+
+		/* the hardware IP uses */
+		"gpio0_20", "gpio3_20";
+	
+	
+	/* rxDisable_pullNone state */
+	fragment@0 {
+		target = <&am33xx_pinmux>;
+		__overlay__ {
+			gpio_P9_41_rxDisable_pullNone: pinmux_gpio_P9.41_rxDisable_pullNone {
+				pinctrl-single,pins = <
+					0x18 0xf	0x1a8 15
+				>;
+			};
+		};
+	};
+
+	fragment@1 {
+		target = <&ocp>;
+		__overlay__ {
+			led_P9.41_helper {
+				compatible = "gpio-leds";
+				pinctrl-names = "default";
+				pinctrl-0 = <&gpio_P9_41_rxDisable_pullNone>;
+				
+				leds_P9.41 {
+					label = "leds:P9.41";
+					gpios = <&gpio1 20 0>;
+					linux,default-trigger = "none";
+					default-state = "off";
+				};
+			};
+			
+		};
+	};
+
+};
