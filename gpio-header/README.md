@@ -3,6 +3,8 @@ gpio-header
 
 Generates device tree overlays for easy gpio mux control.
 
+Note, when messing with device tree overlays, you may have to reboot for any changes in the compiled blobs to take effect.
+
 #### Usage
 
 ##### Generate and install the overlay files (optional)
