@@ -23,26 +23,26 @@ Copy the generated .dtbo files to /lib/firmware (or copy manually):
     
 ##### Use the overlay
 
-Setup P9.11 mux for gpio (do "ls /lib/firmware/gpio*P9.11*" to find the proper gpio index).
+Setup P9.11 mux for gpio:
 
-
-__NOTE: I don't neccesarily like this naming since it requires finding something. An alternative would be to keep the naming without the gpio index (so, gpio-p9.11), and change the ocp interface name from "gpio_P9.11_helper" to "gpio_P9.11_gpio28". Then, to find the gpio index for that header, you could just "ls /sys/devices/ocp*/gpio_P9.11_*". That would at least make grepping a little easier.
-Open to suggestions. Either way, you have to find the index so it can be exported.__
-
-
-    echo gpio28-P9.11 > /sys/devices/bone_capemgr.*/slots
+    echo gpio-P9.11 > /sys/devices/bone_capemgr.*/slots
     
 Set the mux values to rx-enable (input) with the pull-up (100uA):
 
-    echo rxEnable_pullUp >/sys/devices/ocp*/gpio_P9.11_helper*/state
+    echo rxEnable_pullUp >/sys/devices/ocp*/gpio_P9.11_*/state
     
 Now disable the pullup:
 
-    echo rxEnable_pullNone >/sys/devices/ocp*/gpio_P9.11_helper*/state
+    echo rxEnable_pullNone >/sys/devices/ocp*/gpio_P9.11_*/state
     
-Now export the gpio pin so we can use it. Use the index shown in the file.
+Now export the gpio pin so we can use it. To find the index:
 
-    eho 28 > /sys/class/gpio/export
+    # ls -d /sys/devices/ocp*/gpio_P9.11_*
+    /sys/devices/ocp.2/gpio_P9.11_gpio28.10
+    
+So, gpio 28. Export gpio 28:
+
+    echo 28 > /sys/class/gpio/export
 
 Now set the gpio to high:
 
