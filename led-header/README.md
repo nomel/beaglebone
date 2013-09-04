@@ -1,7 +1,7 @@
-gpio-header
+led-header
 ==========
 
-Generates device tree overlays for easy gpio mux control.
+Generates device tree overlays for easy gpio led control.
 
 #### Usage
 
@@ -11,7 +11,7 @@ Or, if you're lazy/don't have python, grab the files from the "generated" direct
 
 Generate the dts files, the compile script, and the install script with
 
-    python generateGPIOOverlays.py
+    python generateLEDOverlays.py
     
 On the beaglebone, compile the .dts files to .dtbo
 
@@ -23,23 +23,11 @@ Copy the generated .dtbo files to /lib/firmware (or copy manually):
     
 ##### Use the overlay
 
-Setup P9.11 mux for gpio
+Setup P9.11 for use as a gpio-led
 
-    echo gpio-P9.11 > /sys/devices/bone_capemgr.*/slots
+    echo led-P9.11 > /sys/devices/bone_capemgr.*/slots
     
-Set the mux values to rx-enable (input) with the pull-up (100uA):
-
-    echo rxEnable_pullUp >/sys/devices/ocp*/gpio_P9.11_helper*/state
+Set the led to blink according to cpu usage.
     
-Now disable the pullup:
+    echo cpu0 > trigger /sys/class/leds/leds:P9.11/trigger
 
-    echo rxEnable_pullNone >/sys/devices/ocp*/gpio_P9.11_helper*/state
-    
-###### Valid States
-
-    rxDisable_pullNone
-    rxEnable_pullNone
-    rxDisable_pullUp
-    rxEnable_pullUp
-    rxDisable_pullDown
-    rxEnable_pullDown

@@ -23,9 +23,9 @@ Copy the generated .dtbo files to /lib/firmware (or copy manually):
     
 ##### Use the overlay
 
-Setup P9.11 mux for gpio
+Setup P9.11 mux for gpio (do "ls /lib/firmware/gpio*P9.11*" to find the proper gpio index)
 
-    echo gpio-P9.11 > /sys/devices/bone_capemgr.*/slots
+    echo gpio28-P9.11 > /sys/devices/bone_capemgr.*/slots
     
 Set the mux values to rx-enable (input) with the pull-up (100uA):
 
@@ -34,6 +34,15 @@ Set the mux values to rx-enable (input) with the pull-up (100uA):
 Now disable the pullup:
 
     echo rxEnable_pullNone >/sys/devices/ocp*/gpio_P9.11_helper*/state
+    
+Now export the gpio pin so we can use it. Use the index shown in the file.
+
+    eho 28 > /sys/class/gpio/export
+
+Now set the gpio to high:
+
+    echo 0 > /sys/class/gpio/gpio28/value
+
     
 ###### Valid States
 
