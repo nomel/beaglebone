@@ -144,7 +144,7 @@ def generateDTSFilesDualPin(dualGpioPins, states):
 		p2hardwareName, p2offset, p2kernelPin, p2gpioMuxMode = pin2
 		
 
-		partNumber = "gpio%d-%s" % (p1kernelPin, headerName)
+		partNumber = "gpio-%s" % (headerName)
 		version = "00A0"
 		filename = "%s-%s" % (partNumber, version)
 		
@@ -187,6 +187,7 @@ def generateDTSFilesDualPin(dualGpioPins, states):
 			"index": index,
 			"state names list": ", ".join(['"%s"' % stateName for stateName, stateMuxBits in states]),
 			"pinctrl list": "\n\t\t\t\t".join(pinctrlList),
+			"gpio index": p1kernelPin, 
 		}
 		values.update(helperValues)
 		fragmentList.append(templates.populate(templates.pinmuxHelper, values))
@@ -216,7 +217,7 @@ def generateDTSFiles(gpioPins, states):
 	for pin in gpioPins:
 		headerName, hardwareName, offset, kernelPin, gpioMuxMode = pin
 
-		partNumber = "gpio%d-%s" % (kernelPin, headerName)
+		partNumber = "gpio-%s" % (headerName)
 		version = "00A0"
 		filename = "%s-%s" % (partNumber, version)
 		
@@ -255,6 +256,7 @@ def generateDTSFiles(gpioPins, states):
 			"index": index,
 			"state names list": ", ".join(['"%s"' % stateName for stateName, stateMuxBits in states]),
 			"pinctrl list": "\n\t\t\t\t".join(pinctrlList),
+			"gpio index": kernelPin,
 		}
 		values.update(helperValues)
 		fragmentList.append(templates.populate(templates.pinmuxHelper, values))
