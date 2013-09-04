@@ -33,7 +33,7 @@ Set the mux values to rx-enable (input) with the pull-up (100uA):
 
     echo rxEnable_pullUp >/sys/devices/ocp*/gpio_P9.11_*/state
     
-Now disable the pullup:
+Now disable the pullup for fun:
 
     echo rxEnable_pullNone >/sys/devices/ocp*/gpio_P9.11_*/state
     
@@ -42,13 +42,13 @@ Now export the gpio pin so we can use it. To find the index:
     # ls -d /sys/devices/ocp*/gpio_P9.11_*
     /sys/devices/ocp.2/gpio_P9.11_gpio28.10
     
-So, gpio 28. Export gpio 28:
+At the end, you'll see gpio28. Export gpio 28 for the gpio sysfs interface (if you want to use it):
 
     echo 28 > /sys/class/gpio/export
 
 Now set the gpio to high:
 
-    echo 0 > /sys/class/gpio/gpio28/value
+    echo 1 > /sys/class/gpio/gpio28/value
 
     
 ###### Valid States
