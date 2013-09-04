@@ -24,8 +24,11 @@ Copy the generated .dtbo files to /lib/firmware (or copy manually):
 ##### Use the overlay
 
 Setup P9.11 mux for gpio (do "ls /lib/firmware/gpio*P9.11*" to find the proper gpio index).
-**NOTE: I don't neccesarily like this naming since it requires finding something. An alternative would be to keep the naming without the gpio index (so, gpio-p9.11), and change the ocp interface name from "gpio_P9.11_helper" to "gpio_P9.11_gpio28". Then, to find the gpio index for that header, you could just "ls /sys/devices/ocp*/gpio_P9.11_*". That would at least make grepping a little easier.
-Open to suggestions. Either way, you have to find the index so it can be exported. **
+
+
+__NOTE: I don't neccesarily like this naming since it requires finding something. An alternative would be to keep the naming without the gpio index (so, gpio-p9.11), and change the ocp interface name from "gpio_P9.11_helper" to "gpio_P9.11_gpio28". Then, to find the gpio index for that header, you could just "ls /sys/devices/ocp*/gpio_P9.11_*". That would at least make grepping a little easier.
+Open to suggestions. Either way, you have to find the index so it can be exported.__
+
 
     echo gpio28-P9.11 > /sys/devices/bone_capemgr.*/slots
     
