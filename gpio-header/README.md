@@ -3,7 +3,11 @@ gpio-header
 
 Generates device tree overlays for easy gpio mux control.
 
-Note, when messing with device tree overlays, you may have to reboot for any changes in the compiled blobs to take effect.
+Note, when messing with device tree overlays, you may have to reboot for any changes in the compiled blobs to take effect. The kernel firmware loader caches the blobs, and there's currently no way to flush the cache (LOL).
+
+#### What about gpio-helper
+
+These files have runtime configuration changes in mind. The gpio-helper exports the gpio sysfs entries to /sys/class/gpio, but once they're exported, you can't do change the direction or anything else. With the instant gratification of runtime configuration in mind, you have to export the gpio entries yourself. The setupGPIO scripts will do this for you.
 
 #### Usage
 
