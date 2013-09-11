@@ -134,6 +134,12 @@ def getCombinations(stateList):
 			working = False
 		yield combinations
 
+def getGpioBank(hardwareName):
+	bank,pin = hardwareName.split("_")
+	bank = bank.replace("gpio","")
+	return int(bank), int(pin)
+	
+		
 def generateDTSFilesDualPin(dualGpioPins, states):
 	dtsFilenames = []
 	for pin in dualGpioPins:
@@ -182,12 +188,13 @@ def generateDTSFilesDualPin(dualGpioPins, states):
 			
 			index += 1
 		
+		bank, pin = getGpioBank(p1hardwareName)
 		# last fragment entry for pinmux helper
 		helperValues =	{
 			"index": index,
 			"state names list": ", ".join(['"%s"' % stateName for stateName, stateMuxBits in states]),
 			"pinctrl list": "\n\t\t\t\t".join(pinctrlList),
-			"gpio index": p1kernelPin, 
+			"gpio index": 32*bank + pin,
 		}
 		values.update(helperValues)
 		fragmentList.append(templates.populate(templates.pinmuxHelper, values))
@@ -251,12 +258,13 @@ def generateDTSFiles(gpioPins, states):
 			
 			index += 1
 		
+		bank, pin = getGpioBank(hardwareName)
 		# last fragment entry for pinmux helper
 		helperValues =	{
 			"index": index,
 			"state names list": ", ".join(['"%s"' % stateName for stateName, stateMuxBits in states]),
 			"pinctrl list": "\n\t\t\t\t".join(pinctrlList),
-			"gpio index": kernelPin,
+			"gpio index": 32*bank + pin,
 		}
 		values.update(helperValues)
 		fragmentList.append(templates.populate(templates.pinmuxHelper, values))
