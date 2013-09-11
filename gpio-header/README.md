@@ -3,6 +3,12 @@ gpio-header
 
 Generates device tree overlays for easy gpio mux control.
 
+Note, when messing with device tree overlays, you may have to reboot for any changes in the compiled blobs to take effect. The kernel firmware loader caches the blobs, and there's currently no way to flush the cache (LOL).
+
+#### What about gpio-helper
+
+These files have runtime configuration changes in mind. The gpio-helper exports the gpio sysfs entries to /sys/class/gpio, but once they're exported, you can't do change the direction or anything else. With the instant gratification of runtime configuration in mind, you have to export the gpio entries yourself. The setupGPIO scripts will do this for you.
+
 #### Usage
 
 ##### Generate and install the overlay files (optional)
@@ -23,30 +29,30 @@ Copy the generated .dtbo files to /lib/firmware (or copy manually):
     
 ##### Use the overlay
 
-Setup P9.11 mux for gpio (do "ls /lib/firmware/gpio*P9.11*" to find the proper gpio index).
+Setup P9.11 mux for gpio:
 
-
-__NOTE: I don't neccesarily like this naming since it requires finding something. An alternative would be to keep the naming without the gpio index (so, gpio-p9.11), and change the ocp interface name from "gpio_P9.11_helper" to "gpio_P9.11_gpio28". Then, to find the gpio index for that header, you could just "ls /sys/devices/ocp*/gpio_P9.11_*". That would at least make grepping a little easier.
-Open to suggestions. Either way, you have to find the index so it can be exported.__
-
-
-    echo gpio28-P9.11 > /sys/devices/bone_capemgr.*/slots
+    echo gpio-P9.11 > /sys/devices/bone_capemgr.*/slots
     
 Set the mux values to rx-enable (input) with the pull-up (100uA):
 
-    echo rxEnable_pullUp >/sys/devices/ocp*/gpio_P9.11_helper*/state
+    echo rxEnable_pullUp >/sys/devices/ocp*/gpio_P9.11_*/state
     
-Now disable the pullup:
+Now disable the pullup for fun:
 
-    echo rxEnable_pullNone >/sys/devices/ocp*/gpio_P9.11_helper*/state
+    echo rxEnable_pullNone >/sys/devices/ocp*/gpio_P9.11_*/state
     
-Now export the gpio pin so we can use it. Use the index shown in the file.
+Now export the gpio pin so we can use it. To find the index:
 
-    eho 28 > /sys/class/gpio/export
+    # ls -d /sys/devices/ocp*/gpio_P9.11_*
+    /sys/devices/ocp.2/gpio_P9.11_gpio28.10
+    
+At the end, you'll see gpio28. Export gpio 28 for the gpio sysfs interface (if you want to use it):
+
+    echo 28 > /sys/class/gpio/export
 
 Now set the gpio to high:
 
-    echo 0 > /sys/class/gpio/gpio28/value
+    echo 1 > /sys/class/gpio/gpio28/value
 
     
 ###### Valid States
