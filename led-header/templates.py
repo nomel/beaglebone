@@ -68,13 +68,12 @@ pinctrl = {
 }
 
 pinmuxHelper = {
-	"parameters": ("index", "header name", "state names list", "pinctrl list"),
+	"parameters": ("index", "header name", "state names list", "pinctrl list", "gpio index"),
 	"text": """
 	fragment@<<index>> {
 		target = <&ocp>;
 		__overlay__ {
-
-			gpio_<<header name>>_helper {
+			gpio-<<header name>>_gpio<<gpio index>> {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
 				pinctrl-names = <<state names list>>;
@@ -96,7 +95,7 @@ ledHelper = {
 				pinctrl-names = "default";
 				<<output pinctrl entry>>
 				
-				leds_<<header name>> {
+				leds-<<header name>> {
 					label = "leds:<<header name>>";
 					gpios = <&gpio<<gpio bank + 1>> <<gpio pin>> 0>;
 					linux,default-trigger = "none";
