@@ -95,7 +95,7 @@
 	fragment@6 {
 		target = <&ocp>;
 		__overlay__ {
-			gpio_P9.14_gpio50 {
+			gpio-P9.14_gpio50 {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
 				pinctrl-names = "rxDisable_pullNone", "rxEnable_pullNone", "rxDisable_pullUp", "rxEnable_pullUp", "rxDisable_pullDown", "rxEnable_pullDown";

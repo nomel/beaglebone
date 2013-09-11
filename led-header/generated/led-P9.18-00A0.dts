@@ -40,7 +40,7 @@
 				pinctrl-names = "default";
 				pinctrl-0 = <&gpio_P9_18_rxDisable_pullNone>;
 				
-				leds_P9.18 {
+				leds-P9.18 {
 					label = "leds:P9.18";
 					gpios = <&gpio1 5 0>;
 					linux,default-trigger = "none";
