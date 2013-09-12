@@ -8,3 +8,9 @@ See the presentation at zoho.com: [HOW TO PRU: PRUSS System Events and ARM Inter
 ###### Diagram
 
 Created with [Dia](http://sourceforge.net/projects/dia-installer/).
+
+###### Watching interrupts
+
+To watch system interrupt counts, you run something like
+    
+    watch -n 0.2 cat /proc/interrupts
