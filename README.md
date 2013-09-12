@@ -10,4 +10,4 @@ Easy runtime pin muxing of gpio for header pins.
 Easily enable the led sysfs interface for header pins.
 
 ###### pru
-Scripts/tools related to pru development.
+Scripts, tools, and documentation related to pru (or PRUSS) development.
