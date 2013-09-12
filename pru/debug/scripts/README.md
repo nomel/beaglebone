@@ -5,7 +5,7 @@ Random debug scripts that use the horribly slow devmem2 program to read/modify p
 
 ###### Scripts
 
-Scripts for the individual prus can be found in [pru0](pru0)and [pru1](pru1).
+Scripts for the individual prus can be found in [pru0](pru0) and [pru1](pru1).
 
 * reset - resets the pru.
 * enable - enables execution of the current firmware.
