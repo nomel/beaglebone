@@ -1,0 +1,10 @@
+#!/bin/bash
+dm(){ devmem2 $1 w $2 | sed -n 3p | awk '{ print $6 }' ;}
+numsteps=${1:-1}
+dm(){ devmem2 $1 w $2 | sed -n 3p | awk '{ print $6 }' ;}
+for ((i=0;i<$numsteps;i++))
+do
+#echo -n "from: "; ./pc
+dm 0x4a322000 0x10b > /dev/null
+echo -n "to: "; ./pc
+done

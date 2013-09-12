@@ -1,0 +1,20 @@
+#!/bin/bash
+. ./init
+
+echo -n -e "r0\t$(dm 0x4a324400)"; echo -n -e "\t\t"; echo -e "r16\t$(dm 0x4a324440)"
+echo -n -e "r1\t$(dm 0x4a324404)"; echo -n -e "\t\t"; echo -e "r17\t$(dm 0x4a324444)"
+echo -n -e "r2\t$(dm 0x4a324408)"; echo -n -e "\t\t"; echo -e "r18\t$(dm 0x4a324448)"
+echo -n -e "r3\t$(dm 0x4a32440C)"; echo -n -e "\t\t"; echo -e "r19\t$(dm 0x4a32444c)"
+echo -n -e "r4\t$(dm 0x4a324410)"; echo -n -e "\t\t"; echo -e "r20\t$(dm 0x4a324450)"
+echo -n -e "r5\t$(dm 0x4a324414)"; echo -n -e "\t\t"; echo -e "r21\t$(dm 0x4a324454)"
+echo -n -e "r6\t$(dm 0x4a324418)"; echo -n -e "\t\t"; echo -e "r22\t$(dm 0x4a324458)"
+echo -n -e "r7\t$(dm 0x4a32441c)"; echo -n -e "\t\t"; echo -e "r23\t$(dm 0x4a32445c)"
+echo -n -e "r8\t$(dm 0x4a324420)"; echo -n -e "\t\t"; echo -e "r24\t$(dm 0x4a324460)"
+echo -n -e "r9\t$(dm 0x4a324424)"; echo -n -e "\t\t"; echo -e "r25\t$(dm 0x4a324464)"
+echo -n -e "r10\t$(dm 0x4a324428)"; echo -n -e "\t\t"; echo -e "r26\t$(dm 0x4a324468)"
+echo -n -e "r11\t$(dm 0x4a32442c)"; echo -n -e "\t\t"; echo -e "r27\t$(dm 0x4a32446c)"
+echo -n -e "r12\t$(dm 0x4a324430)"; echo -n -e "\t\t"; echo -e "r28\t$(dm 0x4a324470)"
+echo -n -e "r13\t$(dm 0x4a324434)"; echo -n -e "\t\t"; echo -e "r29\t$(dm 0x4a324474)"
+echo -n -e "r14\t$(dm 0x4a324438)"; echo -n -e "\t\t"; echo -e "r30\t$(dm 0x4a324478)"
+echo -n -e "r15\t$(dm 0x4a32443c)";	
+echo

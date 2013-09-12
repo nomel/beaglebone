@@ -1,0 +1,20 @@
+#!/bin/bash
+dm(){ devmem2 $1 w $2 | sed -n 3p | awk '{ print $6 }' ;}
+
+echo -n -e "r0\t$(dm 0x4a322400)"; echo -n -e "\t\t"; echo -e "r16\t$(dm 0x4a322440)"
+echo -n -e "r1\t$(dm 0x4a322404)"; echo -n -e "\t\t"; echo -e "r17\t$(dm 0x4a322444)"
+echo -n -e "r2\t$(dm 0x4a322408)"; echo -n -e "\t\t"; echo -e "r18\t$(dm 0x4a322448)"
+echo -n -e "r3\t$(dm 0x4a32240C)"; echo -n -e "\t\t"; echo -e "r19\t$(dm 0x4a32244c)"
+echo -n -e "r4\t$(dm 0x4a322410)"; echo -n -e "\t\t"; echo -e "r20\t$(dm 0x4a322450)"
+echo -n -e "r5\t$(dm 0x4a322414)"; echo -n -e "\t\t"; echo -e "r21\t$(dm 0x4a322454)"
+echo -n -e "r6\t$(dm 0x4a322418)"; echo -n -e "\t\t"; echo -e "r22\t$(dm 0x4a322458)"
+echo -n -e "r7\t$(dm 0x4a32241c)"; echo -n -e "\t\t"; echo -e "r23\t$(dm 0x4a32245c)"
+echo -n -e "r8\t$(dm 0x4a322420)"; echo -n -e "\t\t"; echo -e "r24\t$(dm 0x4a322460)"
+echo -n -e "r9\t$(dm 0x4a322424)"; echo -n -e "\t\t"; echo -e "r25\t$(dm 0x4a322464)"
+echo -n -e "r10\t$(dm 0x4a322428)"; echo -n -e "\t\t"; echo -e "r26\t$(dm 0x4a322468)"
+echo -n -e "r11\t$(dm 0x4a32242c)"; echo -n -e "\t\t"; echo -e "r27\t$(dm 0x4a32246c)"
+echo -n -e "r12\t$(dm 0x4a322430)"; echo -n -e "\t\t"; echo -e "r28\t$(dm 0x4a322470)"
+echo -n -e "r13\t$(dm 0x4a322434)"; echo -n -e "\t\t"; echo -e "r29\t$(dm 0x4a322474)"
+echo -n -e "r14\t$(dm 0x4a322438)"; echo -n -e "\t\t"; echo -e "r30\t$(dm 0x4a322478)"
+echo -n -e "r15\t$(dm 0x4a32243c)";	
+echo

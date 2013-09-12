@@ -1,0 +1,9 @@
+#!/bin/bash
+numsteps=${1:-1}
+. ./init
+for ((i=0;i<$numsteps;i++))
+do
+#echo -n "from: "; ./pc
+dm 0x4a324000 0x10b
+echo -n "to: "; ./pc
+done

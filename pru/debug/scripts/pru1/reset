@@ -1,0 +1,5 @@
+#!/bin/bash
+. ./init
+./disable
+dm 0x4a324000 0x1
+dm 0x4a324000 0x3

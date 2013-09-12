@@ -1,0 +1,4 @@
+#!/bin/bash
+. ./init
+dm 0x4a324004
+

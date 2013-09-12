@@ -1,0 +1,3 @@
+#!/bin/bash
+dm(){ devmem2 $1 w $2 | sed -n 3p | awk '{ print $6 }' ;}
+dm 0x4a322000 2

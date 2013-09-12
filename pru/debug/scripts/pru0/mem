@@ -1,0 +1,36 @@
+#!/bin/bash
+dm(){ devmem2 $1 w $2 | sed -n 3p | awk '{ print $6 }' ;}
+
+echo -n -e "m 0000\t"; dm 0x4a302000 
+echo -n -e "m 0004\t"; dm 0x4a302004 
+echo -n -e "m 0008\t"; dm 0x4a302008 
+echo -n -e "m 000C\t"; dm 0x4a30200C 
+echo -n -e "m 0010\t"; dm 0x4a302010 
+echo -n -e "m 0014\t"; dm 0x4a302014 
+echo -n -e "m 0018\t"; dm 0x4a302018 
+echo -n -e "m 001c\t"; dm 0x4a30201c 
+echo -n -e "m 0020\t"; dm 0x4a302020 
+echo -n -e "m 0024\t"; dm 0x4a302024 
+echo -n -e "m 0028\t"; dm 0x4a302028 
+echo -n -e "m 002c\t"; dm 0x4a30202c 
+echo -n -e "m 0030\t"; dm 0x4a302030 
+echo -n -e "m 0034\t"; dm 0x4a302034 
+echo -n -e "m 0038\t"; dm 0x4a302038 
+echo -n -e "m 003c\t"; dm 0x4a30203c
+echo -n -e "m 0040\t"; dm 0x4a302040
+echo -n -e "m 0044\t"; dm 0x4a302044
+echo -n -e "m 0048\t"; dm 0x4a302048
+echo -n -e "m 004c\t"; dm 0x4a30204c
+echo -n -e "m 0050\t"; dm 0x4a302050
+echo -n -e "m 0054\t"; dm 0x4a302054
+echo -n -e "m 0058\t"; dm 0x4a302058
+echo -n -e "m 005c\t"; dm 0x4a30205c
+echo -n -e "m 0060\t"; dm 0x4a302060
+echo -n -e "m 0064\t"; dm 0x4a302064
+echo -n -e "m 0068\t"; dm 0x4a302068
+echo -n -e "m 006c\t"; dm 0x4a30206c
+echo -n -e "m 0070\t"; dm 0x4a302070
+echo -n -e "m 0074\t"; dm 0x4a302074
+echo -n -e "m 0078\t"; dm 0x4a302078
+echo -n -e "m 007c\t"; dm 0x4a30207C
+echo -n -e "m 0080\t"; dm 0x4a302080
