@@ -12,7 +12,7 @@ Scripts for the individual prus can be found in [pru0](pru0) and [pru1](pru1).
 * disable - stops execution
 * mem - displays the first 100 or so words of data memory
 * regs - shows the contents of all 32 registers
-* step - steps the program counter and shows the step from/to value.
+* step <count> - steps the program counter and shows the step from/to value. steps count steps (1 if blank)
 * init - used by the other scripts (severely needs to be removed. slows things way down)
 
 ###### PASM Debug Files
