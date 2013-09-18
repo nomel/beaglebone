@@ -63,3 +63,10 @@ Now set the gpio to high:
     rxEnable_pullUp
     rxDisable_pullDown
     rxEnable_pullDown
+    
+###### Errors
+If you get an error at
+
+    echo gpio-P9.11 > /sys/devices/bone_capemgr.*/slots
+    
+use the dmesg (or dmesg | tail) command to see why the overlay couldn't load (most likely a pin conflict).
