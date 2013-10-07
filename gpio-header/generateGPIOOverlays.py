@@ -9,7 +9,7 @@
 # 
 # Set P9.11 to gpio, RX enabled, pull up
 #	echo gpio-P9.11 > /sys/devices/bone_capemgr.*/slots
-#	echo rxEnable_pullUp > /sys/devices/ocp*/gpio_P9.11_helper*/state
+#	echo rxEnable_pullUp > /sys/devices/ocp*/gpio-P9.11_*/state
 
 import itertools
 import operator 
@@ -17,10 +17,7 @@ import templates
 
 gpioPins = [
 	# format is ( header name, hard ip name, offset , kernel number, mux mode for gpio)
-	# put together from:
-	# https://github.com/derekmolloy/boneDeviceTree/blob/master/docs/BeagleboneBlackP8HeaderTable.pdf
-	# and
-	# https://github.com/derekmolloy/boneDeviceTree/blob/master/docs/BeagleboneBlackP9HeaderTable.pdf
+	# put together from the list at https://docs.google.com/spreadsheet/ccc?key=0As0aJokrBccAdEdwNmVQdHhSd0dmSWZMaWdJbVZJMkE&hl=en#gid=2
 	# P9 pins 14, 16, 41, and 42 weren't included for whatever reason, but they are included here.
 	( "P8.3", "gpio1_6", 0x018, 6, 7 ),
 	( "P8.4", "gpio1_7", 0x01C, 7, 7 ),
@@ -296,7 +293,7 @@ def generateCompileScript(dtsFilenames):
 	f = open("compile.sh", "w")
 	try:
 		f.write("echo Compiling dts files...\n")
-		command = "echo \ \ %s.dts -\> %s.dtbo\ndtc -O dtb -o %s.dtbo -b 0 -@ -I dts %s.dts\n"
+		command = "echo %s.dts -\> %s.dtbo\ndtc -O dtb -o %s.dtbo -b 0 -@ -I dts %s.dts\n"
 		for filename in dtsFilenames:
 			f.write(command % (filename, filename, filename, filename))
 		f.write("echo Done.")
