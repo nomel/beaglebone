@@ -17,7 +17,10 @@ import templates
 
 gpioPins = [
 	# format is ( header name, hard ip name, offset , kernel number, mux mode for gpio)
-	# put together from the list at https://docs.google.com/spreadsheet/ccc?key=0As0aJokrBccAdEdwNmVQdHhSd0dmSWZMaWdJbVZJMkE&hl=en#gid=2
+	# put together from:
+	# https://github.com/derekmolloy/boneDeviceTree/blob/master/docs/BeagleboneBlackP8HeaderTable.pdf
+	# and
+	# https://github.com/derekmolloy/boneDeviceTree/blob/master/docs/BeagleboneBlackP9HeaderTable.pdf
 	# P9 pins 14, 16, 41, and 42 weren't included for whatever reason, but they are included here.
 	( "P8.3", "gpio1_6", 0x018, 6, 7 ),
 	( "P8.4", "gpio1_7", 0x01C, 7, 7 ),
@@ -68,7 +71,7 @@ gpioPins = [
 	( "P9.13", "gpio0_31", 0x074, 29, 7 ),
 	( "P9.14", "gpio1_18", 0x048, 18, 7 ),
 	( "P9.15", "gpio1_16", 0x040, 16, 7 ),
-	( "P9.16", "gpio1_19", 0x050, 19, 7 ),
+	( "P9.16", "gpio1_19", 0x04C, 19, 7 ),
 	( "P9.17", "gpio0_4", 0x15C, 87, 7 ),
 	( "P9.18", "gpio0_5", 0x158, 86, 7 ),
 	( "P9.19", "gpio0_13", 0x17C, 95, 7 ),
@@ -89,24 +92,24 @@ gpioPins = [
 
 gpioDualPins = [	# these header pins are connected to two physical pins. claim both of them.
 	( "P9.41", [
-			("gpio0_20", 0x018, 6, 7 ),
-			("gpio3_20", 0x1A8, 106, 7),	# will be set to default.
+			("gpio0_20", 0x1B4, 109, 7 ),
+			("gpio3_20", 0x1A8, 109, 7),	# will be set to default.
 		]
 	),
 	( "P9.41b", [
-			("gpio3_20", 0x1A8, 106, 7),
-			("gpio0_20", 0x018, 6, 7 ),		# will be set to default.
+			("gpio3_20", 0x1A8, 109, 7),
+			("gpio0_20", 0x1B4, 109, 7 ),		# will be set to default.
 		]
 	),
 	
 	( "P9.42", [
-			("gpio0_7", 0x0CC, 51, 7 ),	
-			("gpio3_18", 0x1A0, 104, 7 ),	# will be set to default.
+			("gpio0_7", 0x164, 89, 7 ),	
+			("gpio3_18", 0x1A0, 89, 7 ),	# will be set to default.
 		]
 	),
 	( "P9.42b", [
-			("gpio3_18", 0x1A0, 104, 7 ),
-			("gpio0_7", 0x00CC, 51, 7 ),	# will be set to default.
+			("gpio3_18", 0x1A0, 89, 7 ),
+			("gpio0_7", 0x164, 89, 7 ),	# will be set to default.
 		]
 	)
 ]
