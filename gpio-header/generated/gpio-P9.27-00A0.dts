@@ -1,5 +1,5 @@
 /*
-* Easy gpio mux control of "P9.27" ("gpio3_29")
+* Easy gpio mux control of "P9.27" ("gpio3_19")
 */
 /dts-v1/;
 /plugin/;
@@ -17,7 +17,7 @@
 		"P9.27",
 
 		/* the hardware IP uses */
-		"gpio3_29";
+		"gpio3_19";
 	
 	
 	/* rxDisable_pullNone state */
@@ -95,7 +95,7 @@
 	fragment@6 {
 		target = <&ocp>;
 		__overlay__ {
-			gpio-P9.27_gpio125 {
+			gpio-P9.27_gpio115 {
 				compatible = "bone-pinmux-helper";
 				status = "okay";
 				pinctrl-names = "rxDisable_pullNone", "rxEnable_pullNone", "rxDisable_pullUp", "rxEnable_pullUp", "rxDisable_pullDown", "rxEnable_pullDown";
