@@ -1,3 +1,7 @@
+DON"T USE THIS!
+
+Someone has made a proper PRU debugger. Use it instead: http://sourceforge.net/projects/prudebug/
+
 PRU Debug
 ==========
 
