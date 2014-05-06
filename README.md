@@ -11,8 +11,6 @@ Note: This is somewhat obsolete by https://github.com/cdsteinkuehler/beaglebone-
 ###### led-headers
 Easily enable the led sysfs interface for header pins.
 
-Note: This is somewhat obsolete by https://github.com/cdsteinkuehler/beaglebone-universal-io
-
 ###### pru-gpio
 Easy runtime pin muxing of pru gpio for header pins.
 
