@@ -1,3 +1,5 @@
+Note: This is somewhat obsolete by https://github.com/cdsteinkuehler/beaglebone-universal-io
+
 gpio-header
 ==========
 
