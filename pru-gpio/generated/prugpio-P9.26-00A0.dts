@@ -1,0 +1,80 @@
+/*
+* Easy prugpio mux control of "P9.26" ("pr1_pru1_pru_r31_16")
+*/
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+    /* identification */
+    part-number = "prugpio-P9.26";
+    /* version = "00A0"; */
+
+    /* state the resources this cape uses */
+    exclusive-use =
+        /* the pin header uses */
+        "P9.26",
+
+        /* the hardware IP uses */
+        "pr1_pru1_pru_r31_16";
+    
+    
+    /* input_pullNone state */
+    fragment@0 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+            prugpio_P9_26_input_pullNone: pinmux_prugpio_P9.26_input_pullNone {
+                pinctrl-single,pins = <
+                    0x180 0x2e
+                >;
+            };
+        };
+    };
+
+    /* input_pullUp state */
+    fragment@1 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+            prugpio_P9_26_input_pullUp: pinmux_prugpio_P9.26_input_pullUp {
+                pinctrl-single,pins = <
+                    0x180 0x36
+                >;
+            };
+        };
+    };
+
+    /* input_pullDown state */
+    fragment@2 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+            prugpio_P9_26_input_pullDown: pinmux_prugpio_P9.26_input_pullDown {
+                pinctrl-single,pins = <
+                    0x180 0x26
+                >;
+            };
+        };
+    };
+
+    fragment@3 {
+        target = <&ocp>;
+        __overlay__ {
+            prugpio-P9.26_gpio16 {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "input_pullNone", "input_pullUp", "input_pullDown";
+                pinctrl-0 = <&prugpio_P9_26_input_pullNone>;
+				pinctrl-1 = <&prugpio_P9_26_input_pullUp>;
+				pinctrl-2 = <&prugpio_P9_26_input_pullDown>;
+            };
+        };
+    };
+
+    fragment@4 {
+    target = <&pruss>;
+        __overlay__ {
+            status = "okay";
+        };
+    };
+
+};

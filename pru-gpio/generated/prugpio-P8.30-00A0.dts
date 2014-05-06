@@ -1,0 +1,93 @@
+/*
+* Easy prugpio mux control of "P8.30" ("pr1_pru1_pru_r31_11", "pr1_pru1_pru_r30_11")
+*/
+/dts-v1/;
+/plugin/;
+
+/ {
+    compatible = "ti,beaglebone", "ti,beaglebone-black";
+
+    /* identification */
+    part-number = "prugpio-P8.30";
+    /* version = "00A0"; */
+
+    /* state the resources this cape uses */
+    exclusive-use =
+        /* the pin header uses */
+        "P8.30",
+
+        /* the hardware IP uses */
+        "pr1_pru1_pru_r31_11", "pr1_pru1_pru_r30_11";
+    
+    
+    /* input_pullNone state */
+    fragment@0 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+            prugpio_P8_30_input_pullNone: pinmux_prugpio_P8.30_input_pullNone {
+                pinctrl-single,pins = <
+                    0xec 0x2e
+                >;
+            };
+        };
+    };
+
+    /* output state */
+    fragment@1 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+            prugpio_P8_30_output: pinmux_prugpio_P8.30_output {
+                pinctrl-single,pins = <
+                    0xec 0xd
+                >;
+            };
+        };
+    };
+
+    /* input_pullUp state */
+    fragment@2 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+            prugpio_P8_30_input_pullUp: pinmux_prugpio_P8.30_input_pullUp {
+                pinctrl-single,pins = <
+                    0xec 0x36
+                >;
+            };
+        };
+    };
+
+    /* input_pullDown state */
+    fragment@3 {
+        target = <&am33xx_pinmux>;
+        __overlay__ {
+            prugpio_P8_30_input_pullDown: pinmux_prugpio_P8.30_input_pullDown {
+                pinctrl-single,pins = <
+                    0xec 0x26
+                >;
+            };
+        };
+    };
+
+    fragment@4 {
+        target = <&ocp>;
+        __overlay__ {
+            prugpio-P8.30_gpio11 {
+                compatible = "bone-pinmux-helper";
+                status = "okay";
+                pinctrl-names = "input_pullNone", "output", "input_pullUp", "input_pullDown";
+                pinctrl-0 = <&prugpio_P8_30_input_pullNone>;
+				pinctrl-1 = <&prugpio_P8_30_output>;
+				pinctrl-2 = <&prugpio_P8_30_input_pullUp>;
+				pinctrl-3 = <&prugpio_P8_30_input_pullDown>;
+            };
+        };
+    };
+
+    fragment@5 {
+    target = <&pruss>;
+        __overlay__ {
+            status = "okay";
+        };
+    };
+
+};
